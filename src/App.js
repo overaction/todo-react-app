@@ -62,7 +62,7 @@ function App() {
         </form>
       </div>
       {todosArr.map(todo => (
-        <Todos key={todo.id} todo={todo} />
+        <Todos key={todo.id} todo={todo} todosArr={todosArr} setTodosArr={setTodosArr}/>
       ))}
     </div>
   );
