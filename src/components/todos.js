@@ -2,18 +2,22 @@ import React from 'react';
 import { faCircle, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Todos = () => {
+const Todos = ({todo}) => {
   return (
-    <div className="todo-list">
+    <section className="todo-list">
       <div className="list--clear">
-        <label for="list--item">
-          <button className="clearBtn"><FontAwesomeIcon icon={faCircle} size="2x"/></button>
+        <label htmlFor="list--item">
+          <button className="clearBtn">
+            <FontAwesomeIcon icon={faCircle} size="2x" />
+          </button>
         </label>
-        <input type="text" id="list--item" disabled="true" value="a"/>
+        <input type="text" id="list--item" disabled={true} value={todo.text} />
       </div>
-      <button className="deleteBtn"><FontAwesomeIcon icon={faTimes} size="2x"/></button>
-    </div>
-  )
-}
+      <button className="deleteBtn">
+        <FontAwesomeIcon icon={faTimes} size="2x" />
+      </button>
+    </section>
+  );
+};
 
 export default Todos;
