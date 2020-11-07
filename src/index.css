@@ -82,6 +82,11 @@ body {
   margin-top: -7px;
 }
 
+.completed {
+  text-decoration: line-through;
+  color: #e6e6e6;
+}
+
 .deleteBtn {
   margin-right: 20px;
   color:#e6e6e6;

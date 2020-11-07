@@ -23,7 +23,7 @@ function App() {
   const onSubmit = (e) => {
     e.preventDefault();
     const data = {
-      id: todosArr.length,
+      id: (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4),
       text: todo,
       completed: false,
     }
@@ -32,7 +32,6 @@ function App() {
 
   useEffect(() => {
     getLocalTodos();
-    console.log(todosArr);
   }, []);
 
   useEffect(() => {
