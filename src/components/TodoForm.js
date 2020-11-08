@@ -5,6 +5,11 @@ const TodoForm = ({ todosArr, setTodosArr, setSelect, filteredTodos, countTodos 
   const onClick = (value) => {
     setSelect(value);
   };
+
+  const clearCompleted = () => {
+    setTodosArr(todosArr.filter(item => item.completed === false))
+    console.log('123');
+  }
   
   return (
     <>
@@ -23,7 +28,7 @@ const TodoForm = ({ todosArr, setTodosArr, setSelect, filteredTodos, countTodos 
           <button onClick={() => onClick('Active')}>Active</button>
           <button onClick={() => onClick('Completed')}>Completed</button>
         </div>
-        <button className="clearCompleted">Clear Completed Todos</button>
+        <button onClick={clearCompleted} className="clearCompleted">Clear Completed Todos</button>
       </div>
     </>
   );
