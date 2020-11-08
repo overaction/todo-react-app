@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Todos from './components/Todos';
+import TodoForm from './components/TodoForm';
 
 function App() {
   const [todos, setTodos] = useState('');
   const [todosArr, setTodosArr] = useState([]);
+  const [select, setSelect] = useState('All');
+  const [filteredTodos, setFilteredTodos] = useState([]);
+  const [countTodos, setCountTodos] = useState(0);
+
+  /* save local */
   const getLocalTodos = () => {
     if (localStorage.getItem('todos') === null) {
       localStorage.setItem('todos', JSON.stringify([]));
@@ -19,16 +24,7 @@ function App() {
     localStorage.setItem('todos', JSON.stringify(todosArr));
   };
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    const data = {
-      id: (Math.random() * (0.12 - 0.02) + 0.02).toFixed(4),
-      text: todos,
-      completed: false,
-    };
-    setTodosArr((prev) => [...prev, data]);
-  };
-
+  /* useEffect */
   useEffect(() => {
     getLocalTodos();
     console.log('getlocal');
@@ -37,8 +33,21 @@ function App() {
   useEffect(() => {
     setLocalTodos();
     setTodos('');
-    console.log('useeffectd');
   }, [todosArr]);
+
+  useEffect(() => {
+    filterHandler();
+    ItemLeft();
+  },[select,todosArr])
+
+  /* Functions */
+  const ItemLeft = () => {
+    let count = 0;
+    todosArr.map((item) => {
+      if(!item.completed) count++;
+    });
+    setCountTodos(count);
+  }
 
   const onTodoChange = (e) => {
     setTodos(e.target.value);
@@ -72,6 +81,29 @@ function App() {
         );
   };
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const data = {
+      id: (Math.random() * (0.12 - 0.02) + 0.02).toFixed(4),
+      text: todos,
+      completed: false,
+    };
+    setTodosArr((prev) => [...prev, data]);
+  };
+
+  const filterHandler = () => {
+    switch(select) {
+      case 'Active':
+        setFilteredTodos(todosArr.filter(item => item.completed === false))
+        break;
+      case 'Completed':
+        setFilteredTodos(todosArr.filter(item => item.completed === true))
+        break;
+      default:
+        setFilteredTodos(todosArr);
+    }
+  }
+
   return (
     <div className="todos_container">
       <h1>todos</h1>
@@ -89,14 +121,13 @@ function App() {
           />
         </form>
       </div>
-      {todosArr.map((todo) => (
-        <Todos
-          key={todo.id}
-          todo={todo}
-          todosArr={todosArr}
-          setTodosArr={setTodosArr}
-        />
-      ))}
+      <TodoForm
+      todosArr={todosArr}
+      filteredTodos={filteredTodos} 
+      setTodosArr={setTodosArr} 
+      setSelect={setSelect}
+      countTodos={countTodos}
+      />
     </div>
   );
 }

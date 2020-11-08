@@ -102,3 +102,15 @@ body {
   height: 240%;
   font-size: 2rem;
 }
+
+/* Todo Form */
+.todoOptions {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+}
+
+.todoOptions button {
+  cursor: pointer;
+}

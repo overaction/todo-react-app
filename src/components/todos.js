@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { faCircle, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -18,7 +18,6 @@ const Todos = ({todo, todosArr, setTodosArr}) => {
       return item;
     }))
   }
-
   return (
     <section className="todo-list">
       <div className="list--clear">
