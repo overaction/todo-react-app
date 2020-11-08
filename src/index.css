@@ -31,7 +31,7 @@ body {
   color: #ead7d7;
 }
 
-.todo {
+.todoForm {
   color: #e6e6e6;
   background-color: #fff;
   width: 80%;
@@ -39,7 +39,7 @@ body {
   display: flex;
 }
 
-.todo--angleDown {
+.clearAllBtn {
   padding: 1rem;
   margin-top: 5px;
 }
