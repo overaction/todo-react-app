@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import Todos from './Todos';
 
-const TodoForm = ({ todosArr, setTodosArr, setSelect, filteredTodos, countTodos }) => {
+const TodoForm = ({ todosArr, setTodosArr, select, setSelect, filteredTodos, countTodos, isCompleted }) => {
+  
   const onClick = (value) => {
     setSelect(value);
   };
@@ -23,12 +24,12 @@ const TodoForm = ({ todosArr, setTodosArr, setSelect, filteredTodos, countTodos 
       ))}
       <div className="todoOptions">
         <span className="leftTodos">{countTodos} left items</span>
-        <div>
-          <button onClick={() => onClick('All')}>All</button>
-          <button onClick={() => onClick('Active')}>Active</button>
-          <button onClick={() => onClick('Completed')}>Completed</button>
+        <div className="todosStatus">
+          <button className={select==='All' ? "selected" : ''} onClick={() => onClick('All')}>All</button>
+          <button className={select==='Active' ? "selected" : ''} onClick={() => onClick('Active')}>Active</button>
+          <button className={select==='Completed' ? "selected" : ''} onClick={() => onClick('Completed')}>Completed</button>
         </div>
-        <button onClick={clearCompleted} className="clearCompleted">Clear Completed Todos</button>
+        <button onClick={clearCompleted} className={"clearCompleted "+(isCompleted ? "visible" : '')}>Clear Completed Todos</button>
       </div>
     </>
   );

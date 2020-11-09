@@ -9,6 +9,7 @@ function App() {
   const [select, setSelect] = useState('All');
   const [filteredTodos, setFilteredTodos] = useState([]);
   const [countTodos, setCountTodos] = useState(0);
+  const [isCompleted, setIsCompleted] = useState(false);
 
   /* save local */
   const getLocalTodos = () => {
@@ -32,6 +33,7 @@ function App() {
 
   useEffect(() => {
     setLocalTodos();
+    checkCompleted();
     setTodos('');
   }, [todosArr]);
 
@@ -41,6 +43,10 @@ function App() {
   },[select,todosArr])
 
   /* Functions */
+  const checkCompleted = () => {
+    const found = todosArr.find(item => item.completed);
+    found ? setIsCompleted(true) : setIsCompleted(false);
+  }
   const ItemLeft = () => {
     let count = 0;
     todosArr.map((item) => {
@@ -125,8 +131,10 @@ function App() {
       todosArr={todosArr}
       filteredTodos={filteredTodos} 
       setTodosArr={setTodosArr} 
+      select={select}
       setSelect={setSelect}
       countTodos={countTodos}
+      isCompleted={isCompleted}
       />
     </div>
   );

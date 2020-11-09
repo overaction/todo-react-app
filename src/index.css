@@ -69,7 +69,7 @@ body {
   justify-content: space-between;
 }
 
-.list--clear {
+.todo-clear {
   display: flex;
   position: relative;
   width: 80%;
@@ -77,22 +77,52 @@ body {
   margin-left: 20px;
 }
 
-.clearBtn {
+
+.nonClear {
   color: #ead7d7;
-  margin-top: -7px;
+  margin-top: -18px;
+}
+
+.clearBtn {
+  color: rgb(122, 206, 122);
+  margin-top: -18px;
 }
 
 .completed {
   text-decoration: line-through;
   color: #e6e6e6;
+  animation: fadeOut 0.2s alternate;
+}
+
+.inCompleted {
+  color: black;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+@keyframes fadeOut {
+  from {
+    color: black;
+    text-decoration: none;
+  }
+  to {
+    text-decoration: line-through;
+    color: #e6e6e6;
+  }
 }
 
 .deleteBtn {
   margin-right: 20px;
   color:#e6e6e6;
+  opacity: 0;
 }
 
-#list--item {
+.deleteBtn:hover {
+  opacity: 1;
+  color: #ead7d7;
+}
+
+.todo-input {
   position: absolute;
   background-color: transparent;
   border: none;
@@ -103,14 +133,40 @@ body {
   font-size: 2rem;
 }
 
+.todo-input:hover .deleteBtn{
+  opacity: 1;
+}
+
 /* Todo Form */
 .todoOptions {
   width: 80%;
   display: flex;
   justify-content: space-between;
   background-color: #fff;
+  color: #777777;
+  padding: 10px;
 }
 
 .todoOptions button {
   cursor: pointer;
+  color: #777777;
+}
+
+
+.clearCompleted {
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
+}
+
+.todosStatus button {
+  margin-left: 8px;
+  
+}
+
+.todosStatus .selected {
+  border: 1px solid #ebcccc;
+  border-radius: 4px;
 }
