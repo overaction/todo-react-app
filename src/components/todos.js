@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { faCircle, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Todos = ({todo, todosArr, setTodosArr}) => {
-  const [hover, setHover] = useState(false);
   const deleteTodo = () => {
     setTodosArr(todosArr.filter(item => item.id !== todo.id))
   }
